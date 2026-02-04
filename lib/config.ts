@@ -2,7 +2,7 @@ import { ValentineConfig } from "./types";
 
 export const CONFIG: ValentineConfig = {
   valentineName: "Brownie",
-  pageTitle: "Will You Be My Valentine? 💝",
+  pageTitle: "The Ulitamte Love Test 💝",
   floatingEmojis: {
     hearts: ["❤️", "💖", "💝", "💗", "💓"],
     bears: ["🧸", "🐻"],
@@ -36,8 +36,8 @@ export const CONFIG: ValentineConfig = {
     emojis: "🎁💖🤗💝💋❤️💕",
   },
   colors: {
-    backgroundStart: "#ffafbd",
-    backgroundEnd: "#ffc3a0",
+    backgroundStart: "#7F55B1",
+    backgroundEnd: "#F49BAB",
     buttonBackground: "#ff6b6b",
     buttonHover: "#ff8787",
     textColor: "#ff4757",
