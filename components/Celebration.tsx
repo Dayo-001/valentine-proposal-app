@@ -6,11 +6,11 @@ export default function Celebration() {
     <div className="text-center animate-fade-in px-2">
       <div className="relative mb-6">
         <Image
-          src={CONFIG.image.imageUrl}
+          src="/images/wifey/wifey3.jpg"
           alt={CONFIG.image.imageAltText}
-          height={200}
-          width={200}
-          className="object-cover mx-auto rounded-lg sepia"
+          height={300}
+          width={300}
+          className="object-cover mx-auto rounded-lg"
         />
       </div>
 
