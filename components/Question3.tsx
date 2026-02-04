@@ -23,9 +23,13 @@ export default function Question3({ onYes }: Yes) {
     const maxHeight =
       typeof window !== "undefined" ? window.innerHeight - 50 : 0;
 
+    // Ensure position is within safe bounds (at least 10px from edges)
+    const minLeft = 10;
+    const minTop = 10;
+
     return {
-      left: `${Math.random() * maxWidth}px`,
-      top: `${Math.random() * maxHeight}px`,
+      left: `${Math.max(minLeft, Math.min(maxWidth, Math.random() * maxWidth))}px`,
+      top: `${Math.max(minTop, Math.min(maxHeight, Math.random() * maxHeight))}px`,
     };
   }, []);
 
