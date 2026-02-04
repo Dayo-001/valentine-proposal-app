@@ -52,7 +52,7 @@ export const CONFIG: ValentineConfig = {
     enabled: true,
     autoplay: false,
     musicUrl:
-      "https://res.cloudinary.com/dncywqfpb/video/upload/v1738399057/music_qrhjvy.mp3",
+      "https://res.cloudinary.com/dwbgocfhp/video/upload/v1770209894/5c98-5ef8-4716-8677-584afae1e617_skj9ac.mp3",
     startText: "🎵 Play Music",
     stopText: "🔇 Stop Music",
     volume: 0.5,
@@ -63,3 +63,5 @@ export const CONFIG: ValentineConfig = {
     imageAltText: "Celebration image",
   },
 };
+
+// https://res.cloudinary.com/dwbgocfhp/video/upload/v1770217090/5c98-5ef8-4716-8677-584afae1e617_mpatvq.mp3

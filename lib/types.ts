@@ -79,3 +79,7 @@ export type FloatingElement = {
 export type Yes = {
   onYes: () => void;
 };
+
+export interface MusicPlayerProps {
+  autoStart?: boolean;
+}
