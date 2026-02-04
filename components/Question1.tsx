@@ -42,16 +42,16 @@ export default function Question1({ onNext }: Next) {
   }, [getRandomPosition]);
 
   return (
-    <div className="min-h-[200px] flex flex-col items-center gap-6">
+    <div className="min-h-[200px] flex flex-col items-center gap-4 sm:gap-6">
       <h2
-        className="font-poppins text-2xl md:text-3xl sm:text-xl"
+        className="font-poppins text-lg sm:text-xl lg:text-2xl px-2"
         style={{ color: CONFIG.colors.textColor }}
       >
         {CONFIG.questions.first.text}
       </h2>
-      <div className="flex gap-3 items-center">
+      <div className="flex gap-2 sm:gap-3 items-center flex-wrap justify-center">
         <button
-          className="border-none px-5 py-2.5 mx-2.5 rounded-[20px] text-white text-lg cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 md:text-base sm:px-4 sm:py-2"
+          className="border-none px-4 py-2 sm:px-5 sm:py-2.5 mx-1 sm:mx-2.5 rounded-[20px] text-white text-base sm:text-lg cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95"
           style={{
             ...baseButtonStyle,
             ...hoverButtonStyle,
@@ -69,7 +69,7 @@ export default function Question1({ onNext }: Next) {
         </button>
 
         <button
-          className="border-none px-5 py-2.5 mx-2.5 rounded-[20px] text-white text-lg cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 md:text-base sm:px-4 sm:py-2"
+          className="border-none px-4 py-2 sm:px-5 sm:py-2.5 mx-1 sm:mx-2.5 rounded-[20px] text-white text-base sm:text-lg cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95"
           style={{
             ...baseButtonStyle,
             ...(noButtonPosition
