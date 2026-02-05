@@ -30,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${dancingScript.variable} ${poppins.variable} font-poppins`}
         style={{
-          background: `linear-gradient(135deg, ${CONFIG.colors.backgroundStart}, ${CONFIG.colors.backgroundEnd})`,
+          backgroundColor: "#f5f5f5", // Neutral color instead of gradient
         }}
       >
         {children}

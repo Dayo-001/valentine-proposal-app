@@ -15,6 +15,7 @@ const HomePage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [showCelebration, setShowCelebration] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [bgImageLoaded, setBgImageLoaded] = useState(false);
 
   const handleNextQuestion = () => {
     setCurrentQuestion((prev) => prev + 1);
@@ -30,13 +31,18 @@ const HomePage = () => {
 
   return (
     <ThemeProvider>
-      <div className="fixed inset-0 w-full h-full -z-10 min-h-screen">
+      <div 
+        className={`fixed inset-0 w-full h-full -z-10 min-h-screen transition-opacity duration-500 ${
+          bgImageLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
         <Image
           src="/images/bg-image.jpg"
           alt="Background photo"
           fill
           priority
           className="object-cover blur-xs"
+          onLoad={() => setBgImageLoaded(true)}
         />
       </div>
 
