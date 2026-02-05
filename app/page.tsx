@@ -8,13 +8,13 @@ import Question1 from "@/components/Question1";
 import Question2 from "@/components/Question2";
 import Question3 from "@/components/Question3";
 import Celebration from "@/components/Celebration";
-import ThemeProvider from "@/components/ThemeProvider";
 import Image from "next/image";
 
 const HomePage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [showCelebration, setShowCelebration] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [bgImageLoaded, setBgImageLoaded] = useState(false);
 
   const handleNextQuestion = () => {
     setCurrentQuestion((prev) => prev + 1);
@@ -29,14 +29,19 @@ const HomePage = () => {
   };
 
   return (
-    <ThemeProvider>
-      <div className="fixed inset-0 w-full h-full -z-10 min-h-screen">
+    <>
+      <div 
+        className={`fixed inset-0 w-full h-full -z-10 min-h-screen transition-opacity duration-500 ${
+          bgImageLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
         <Image
           src="/images/bg-image.jpg"
           alt="Background photo"
           fill
           priority
           className="object-cover blur-xs"
+          onLoad={() => setBgImageLoaded(true)}
         />
       </div>
 
@@ -90,7 +95,7 @@ const HomePage = () => {
           )}
         </div>
       </div>
-    </ThemeProvider>
+    </>
   );
 };
 export default HomePage;
