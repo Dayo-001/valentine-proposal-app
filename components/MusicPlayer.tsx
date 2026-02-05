@@ -23,27 +23,31 @@ export default function MusicPlayer({
 
     const isUrlChange = previousMusicUrl.current !== null && previousMusicUrl.current !== musicUrl;
     const isFirstLoad = !hasInitialized.current;
-    const wasPlaying = !audio.paused;
     
-    // Update audio source
-    audio.src = musicUrl;
-    audio.load();
+    // Only update source if it's the first load or URL has changed
+    if (isFirstLoad || isUrlChange) {
+      const wasPlaying = !audio.paused;
+      
+      // Update audio source
+      audio.src = musicUrl;
+      audio.load();
 
-    // Set volume
-    audio.volume = CONFIG.musicStart.volume;
+      // Set volume
+      audio.volume = CONFIG.musicStart.volume;
 
-    // Update tracking refs
-    previousMusicUrl.current = musicUrl;
-    hasInitialized.current = true;
+      // Update tracking refs
+      previousMusicUrl.current = musicUrl;
+      hasInitialized.current = true;
 
-    // Play in these cases:
-    // 1. First load with autoplay enabled
-    // 2. URL changed and music was already playing
-    if ((isFirstLoad && CONFIG.musicStart.autoplay && autoStart) || (isUrlChange && wasPlaying)) {
-      audio
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
+      // Play in these cases:
+      // 1. First load with autoplay enabled
+      // 2. URL changed and music was already playing
+      if ((isFirstLoad && CONFIG.musicStart.autoplay && autoStart) || (isUrlChange && wasPlaying)) {
+        audio
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => setIsPlaying(false));
+      }
     }
   }, [musicUrl, autoStart]);
 
