@@ -4,8 +4,10 @@ import { useState, useCallback, useMemo } from "react";
 import { CONFIG } from "@/lib/config";
 import { Position } from "@/lib/types";
 import { Yes } from "@/lib/types";
+import HintButton from "./HintButton";
+import { Next } from "@/lib/types";
 
-export default function Question3({ onYes }: Yes) {
+export default function Question3({ onYes, onNext }: Yes & Next) {
   const [noButtonPosition, setNoButtonPosition] = useState<Position | null>(
     null
   );
@@ -28,8 +30,14 @@ export default function Question3({ onYes }: Yes) {
     const minTop = 10;
 
     return {
-      left: `${Math.max(minLeft, Math.min(maxWidth - minLeft, Math.random() * maxWidth))}px`,
-      top: `${Math.max(minTop, Math.min(maxHeight - minTop, Math.random() * maxHeight))}px`,
+      left: `${Math.max(
+        minLeft,
+        Math.min(maxWidth - minLeft, Math.random() * maxWidth)
+      )}px`,
+      top: `${Math.max(
+        minTop,
+        Math.min(maxHeight - minTop, Math.random() * maxHeight)
+      )}px`,
     };
   }, []);
 
@@ -38,7 +46,7 @@ export default function Question3({ onYes }: Yes) {
   }, [getRandomPosition]);
 
   return (
-    <div className="min-h-[200px]">
+    <div className="min-h-[200px] mt-14">
       <h2
         className="font-poppins text-lg sm:text-xl lg:text-2xl xl:text-3xl mb-4 sm:mb-6 px-2"
         style={{ color: CONFIG.colors.textColor }}
@@ -80,6 +88,7 @@ export default function Question3({ onYes }: Yes) {
       >
         {CONFIG.questions.third.noBtn}
       </button>
+      <HintButton onNext={onNext} />
     </div>
   );
 }

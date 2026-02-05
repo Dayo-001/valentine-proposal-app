@@ -15,6 +15,7 @@ const HomePage = () => {
   const [hasStarted, setHasStarted] = useState(false);
 
   const handleNextQuestion = () => {
+    if (currentQuestion === 3) return;
     setCurrentQuestion((prev) => prev + 1);
   };
 
@@ -68,7 +69,10 @@ const HomePage = () => {
                     <Question2 onNext={handleNextQuestion} />
                   )}
                   {currentQuestion === 3 && (
-                    <Question3 onYes={handleCelebration} />
+                    <Question3
+                      onYes={handleCelebration}
+                      onNext={handleNextQuestion}
+                    />
                   )}
                 </>
               )}

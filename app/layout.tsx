@@ -30,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dancingScript.variable} ${poppins.variable} font-poppins`}
+        className={`${dancingScript.variable} ${poppins.variable} font-poppins font-dancing`}
       >
         <div className="fixed inset-0 w-full h-full -z-10 min-h-screen">
           <Image
