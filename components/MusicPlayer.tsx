@@ -13,7 +13,7 @@ export default function MusicPlayer({
 }: MusicPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentUrl, setCurrentUrl] = useState(musicUrl);
+  const previousMusicUrl = useRef(musicUrl);
 
   // Initialize audio on mount
   useEffect(() => {
@@ -37,11 +37,11 @@ export default function MusicPlayer({
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (musicUrl !== currentUrl) {
+    if (musicUrl !== previousMusicUrl.current) {
       const wasPlaying = !audio.paused;
       
       // Update the URL
-      setCurrentUrl(musicUrl);
+      previousMusicUrl.current = musicUrl;
       audio.src = musicUrl;
       audio.load();
 
@@ -53,7 +53,7 @@ export default function MusicPlayer({
           .catch(() => setIsPlaying(false));
       }
     }
-  }, [musicUrl, currentUrl]);
+  }, [musicUrl]);
 
   // Toggle music playback
   const toggleMusic = useCallback(() => {
@@ -81,7 +81,7 @@ export default function MusicPlayer({
         {isPlaying ? CONFIG.musicStart.stopText : CONFIG.musicStart.startText}
       </button>
       <audio ref={audioRef} loop>
-        <source src={currentUrl} type="audio/mpeg" />
+        <source src={musicUrl} type="audio/mpeg" />
       </audio>
     </div>
   );
