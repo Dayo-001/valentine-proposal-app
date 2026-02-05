@@ -23,13 +23,24 @@ export default function MusicPlayer({
     // Set volume
     audio.volume = CONFIG.musicStart.volume;
 
+    // Add event listeners to track playback state
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+
     // Attempt autoplay if enabled
     if (CONFIG.musicStart.autoplay && autoStart) {
-      audio
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
+      audio.play().catch(() => {
+        // Autoplay failed, but don't worry - user can click to play
+      });
     }
+
+    return () => {
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
+    };
   }, [autoStart]);
 
   // Handle music URL changes
@@ -47,10 +58,9 @@ export default function MusicPlayer({
 
       // If music was playing, restart it with the new URL
       if (wasPlaying) {
-        audio
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch(() => setIsPlaying(false));
+        audio.play().catch(() => {
+          // Play failed, state will be updated by pause event
+        });
       }
     }
   }, [musicUrl]);
@@ -62,12 +72,10 @@ export default function MusicPlayer({
 
     if (isPlaying) {
       audio.pause();
-      setIsPlaying(false);
     } else {
-      audio
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
+      audio.play().catch(() => {
+        // Play failed, state will be updated by pause event
+      });
     }
   }, [isPlaying]);
 
