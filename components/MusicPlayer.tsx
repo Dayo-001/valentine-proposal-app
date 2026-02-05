@@ -19,10 +19,10 @@ export default function MusicPlayer({
     if (!audio) return;
 
     // Set volume
-    audio.volume = CONFIG.music.volume;
+    audio.volume = CONFIG.musicStart.volume;
 
     // Attempt autoplay if enabled
-    if (CONFIG.music.autoplay && autoStart) {
+    if (CONFIG.musicStart.autoplay && autoStart) {
       audio
         .play()
         .then(() => setIsPlaying(true))
@@ -53,10 +53,10 @@ export default function MusicPlayer({
         className="bg-gradient-to-r from-[#667eea] to-[#764ba2] border-none px-3 py-1.5 sm:px-4 sm:py-2 rounded-[20px] text-white text-xs sm:text-sm cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95"
         aria-label={isPlaying ? "Stop music" : "Play music"}
       >
-        {isPlaying ? CONFIG.music.stopText : CONFIG.music.startText}
+        {isPlaying ? CONFIG.musicStart.stopText : CONFIG.musicStart.startText}
       </button>
       <audio ref={audioRef} loop>
-        <source src={CONFIG.music.musicUrl} type="audio/mpeg" />
+        <source src={CONFIG.musicStart.musicUrl} type="audio/mpeg" />
       </audio>
     </div>
   );

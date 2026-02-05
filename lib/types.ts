@@ -47,7 +47,15 @@ export type ValentineConfig = {
     bounceSpeed: string;
     heartExplosionSize: number;
   };
-  music: {
+  musicStart: {
+    enabled: boolean;
+    autoplay: boolean;
+    musicUrl: string;
+    startText: string;
+    stopText: string;
+    volume: number;
+  };
+  musicEnd: {
     enabled: boolean;
     autoplay: boolean;
     musicUrl: string;

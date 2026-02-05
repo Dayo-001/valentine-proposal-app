@@ -49,11 +49,20 @@ export const CONFIG: ValentineConfig = {
     bounceSpeed: "0.5s",
     heartExplosionSize: 1.5,
   },
-  music: {
+  musicStart: {
     enabled: true,
     autoplay: true,
     musicUrl:
       "https://res.cloudinary.com/dwbgocfhp/video/upload/v1770209894/5c98-5ef8-4716-8677-584afae1e617_skj9ac.mp3",
+    startText: "🎵 Play Music",
+    stopText: "🔇 Stop Music",
+    volume: 0.5,
+  },
+  musicEnd: {
+    enabled: true,
+    autoplay: true,
+    musicUrl:
+      "https://res.cloudinary.com/dwbgocfhp/video/upload/v1770217090/5c98-5ef8-4716-8677-584afae1e617_mpatvq.mp3",
     startText: "🎵 Play Music",
     stopText: "🔇 Stop Music",
     volume: 0.5,

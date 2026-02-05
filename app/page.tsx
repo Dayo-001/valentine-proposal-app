@@ -52,7 +52,7 @@ const HomePage = () => {
             </div>
           ) : (
             <>
-              {CONFIG.music.enabled && <MusicPlayer autoStart={true} />}
+              {CONFIG.musicStart.enabled && <MusicPlayer autoStart={true} />}
               {currentQuestion === 1 && (
                 <h1
                   className="font-dancing text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6 lg:mb-8"
