@@ -13,47 +13,39 @@ export default function MusicPlayer({
 }: MusicPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const previousMusicUrl = useRef(musicUrl);
+  const previousMusicUrl = useRef<string | null>(null);
+  const hasInitialized = useRef(false);
 
-  // Initialize audio on mount
+  // Handle music URL changes and initialization
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
+    const isUrlChange = previousMusicUrl.current !== null && previousMusicUrl.current !== musicUrl;
+    const isFirstLoad = !hasInitialized.current;
+    const wasPlaying = !audio.paused;
+    
+    // Update audio source
+    audio.src = musicUrl;
+    audio.load();
+
     // Set volume
     audio.volume = CONFIG.musicStart.volume;
 
-    // Attempt autoplay if enabled
-    if (CONFIG.musicStart.autoplay && autoStart) {
+    // Update tracking refs
+    previousMusicUrl.current = musicUrl;
+    hasInitialized.current = true;
+
+    // Play in these cases:
+    // 1. First load with autoplay enabled
+    // 2. URL changed and music was already playing
+    if ((isFirstLoad && CONFIG.musicStart.autoplay && autoStart) || (isUrlChange && wasPlaying)) {
       audio
         .play()
         .then(() => setIsPlaying(true))
         .catch(() => setIsPlaying(false));
     }
-  }, [autoStart]);
-
-  // Handle music URL changes
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    if (musicUrl !== previousMusicUrl.current) {
-      const wasPlaying = !audio.paused;
-      
-      // Update the URL
-      previousMusicUrl.current = musicUrl;
-      audio.src = musicUrl;
-      audio.load();
-
-      // If music was playing, restart it with the new URL
-      if (wasPlaying) {
-        audio
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch(() => setIsPlaying(false));
-      }
-    }
-  }, [musicUrl]);
+  }, [musicUrl, autoStart]);
 
   // Toggle music playback
   const toggleMusic = useCallback(() => {
@@ -81,7 +73,7 @@ export default function MusicPlayer({
         {isPlaying ? CONFIG.musicStart.stopText : CONFIG.musicStart.startText}
       </button>
       <audio ref={audioRef} loop>
-        <source src={musicUrl} type="audio/mpeg" />
+        Your browser does not support the audio element.
       </audio>
     </div>
   );
