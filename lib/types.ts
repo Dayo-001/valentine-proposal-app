@@ -91,4 +91,5 @@ export type Yes = {
 
 export interface MusicPlayerProps {
   autoStart?: boolean;
+  musicUrl?: string;
 }
