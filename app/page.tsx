@@ -8,8 +8,7 @@ import Question1 from "@/components/Question1";
 import Question2 from "@/components/Question2";
 import Question3 from "@/components/Question3";
 import Celebration from "@/components/Celebration";
-import ThemeProvider from "@/components/ThemeProvider";
-import Image from "next/image";
+import PolaroidImages from "@/components/PolaroidImages";
 
 const HomePage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -17,6 +16,7 @@ const HomePage = () => {
   const [hasStarted, setHasStarted] = useState(false);
 
   const handleNextQuestion = () => {
+    if (currentQuestion === 3) return;
     setCurrentQuestion((prev) => prev + 1);
   };
 
@@ -29,19 +29,10 @@ const HomePage = () => {
   };
 
   return (
-    <ThemeProvider>
-      <div className="fixed inset-0 w-full h-full -z-10 min-h-screen">
-        <Image
-          src="/images/bg-image.jpg"
-          alt="Background photo"
-          fill
-          priority
-          className="object-cover blur-xs"
-        />
-      </div>
-
+    <>
       <div className="min-h-screen flex justify-center items-center overflow-x-hidden p-3 sm:p-5">
         <FloatingElements showExplosion={showCelebration} />
+        <PolaroidImages show={showCelebration} />
 
         <div className="flex flex-col gap-6 sm:gap-8 lg:gap-10 bg-white/90 p-5 sm:p-6 lg:p-8 rounded-[20px] shadow-[0_0_20px_rgba(0,0,0,0.1)] text-center w-full max-w-[95%] sm:max-w-[85%] md:max-w-[600px] lg:max-w-[500px] mx-auto relative z-10">
           {!hasStarted ? (
@@ -80,7 +71,10 @@ const HomePage = () => {
                     <Question2 onNext={handleNextQuestion} />
                   )}
                   {currentQuestion === 3 && (
-                    <Question3 onYes={handleCelebration} />
+                    <Question3
+                      onYes={handleCelebration}
+                      onNext={handleNextQuestion}
+                    />
                   )}
                 </>
               )}
@@ -90,7 +84,7 @@ const HomePage = () => {
           )}
         </div>
       </div>
-    </ThemeProvider>
+    </>
   );
 };
 export default HomePage;
