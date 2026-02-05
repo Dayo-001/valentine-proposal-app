@@ -14,6 +14,7 @@ const HomePage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [showCelebration, setShowCelebration] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [musicUrl, setMusicUrl] = useState(CONFIG.musicStart.musicUrl);
 
   const handleNextQuestion = () => {
     if (currentQuestion === 3) return;
@@ -26,6 +27,10 @@ const HomePage = () => {
 
   const handleCelebration = () => {
     setShowCelebration(true);
+    // Switch to celebration music
+    if (CONFIG.musicEnd.enabled && CONFIG.musicEnd.musicUrl) {
+      setMusicUrl(CONFIG.musicEnd.musicUrl);
+    }
   };
 
   return (
@@ -52,7 +57,7 @@ const HomePage = () => {
             </div>
           ) : (
             <>
-              {CONFIG.musicStart.enabled && <MusicPlayer autoStart={true} />}
+              {CONFIG.musicStart.enabled && <MusicPlayer autoStart={true} musicUrl={musicUrl} />}
               {currentQuestion === 1 && (
                 <h1
                   className="font-dancing text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6 lg:mb-8"
