@@ -59,7 +59,7 @@ export default function MusicPlayer({
       // If music was playing, restart it with the new URL
       if (wasPlaying) {
         audio.play().catch(() => {
-          // Play failed, state will be updated by pause event
+          // Play failed - event listeners will keep state accurate
         });
       }
     }
@@ -74,7 +74,7 @@ export default function MusicPlayer({
       audio.pause();
     } else {
       audio.play().catch(() => {
-        // Play failed, state will be updated by pause event
+        // Play failed - no action needed, state remains unchanged
       });
     }
   }, [isPlaying]);
