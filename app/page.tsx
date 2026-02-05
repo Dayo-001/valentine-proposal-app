@@ -8,6 +8,9 @@ import Question1 from "@/components/Question1";
 import Question2 from "@/components/Question2";
 import Question3 from "@/components/Question3";
 import Celebration from "@/components/Celebration";
+import ThemeProvider from "@/components/ThemeProvider";
+import PolaroidImages from "@/components/PolaroidImages";
+import Image from "next/image";
 
 const HomePage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -31,6 +34,7 @@ const HomePage = () => {
     <>
       <div className="min-h-screen flex justify-center items-center overflow-x-hidden p-3 sm:p-5">
         <FloatingElements showExplosion={showCelebration} />
+        <PolaroidImages show={showCelebration} />
 
         <div className="flex flex-col gap-6 sm:gap-8 lg:gap-10 bg-white/90 p-5 sm:p-6 lg:p-8 rounded-[20px] shadow-[0_0_20px_rgba(0,0,0,0.1)] text-center w-full max-w-[95%] sm:max-w-[85%] md:max-w-[600px] lg:max-w-[500px] mx-auto relative z-10">
           {!hasStarted ? (

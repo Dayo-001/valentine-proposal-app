@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
+import confetti from "canvas-confetti";
 import { CONFIG } from "@/lib/config";
 import { Position } from "@/lib/types";
 import { Yes } from "@/lib/types";
@@ -45,6 +46,47 @@ export default function Question3({ onYes, onNext }: Yes & Next) {
     setNoButtonPosition(getRandomPosition());
   }, [getRandomPosition]);
 
+  const handleYesClick = useCallback(() => {
+    // Trigger confetti explosion
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = {
+      startVelocity: 30, // Initial speed of confetti particles
+      spread: 360, // Full circle spread (360 degrees)
+      ticks: 60, // Number of animation frames
+      zIndex: 0, // Layer behind modal
+    };
+
+    const randomInRange = (min: number, max: number) => {
+      return Math.random() * (max - min) + min;
+    };
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+
+      // Fire confetti from random positions
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
+    }, 250);
+
+    // Call the original onYes handler
+    onYes();
+  }, [onYes]);
+
   return (
     <div className="min-h-[200px] mt-14">
       <h2
@@ -64,7 +106,7 @@ export default function Question3({ onYes, onNext }: Yes & Next) {
           e.currentTarget.style.backgroundColor =
             CONFIG.colors.buttonBackground;
         }}
-        onClick={onYes}
+        onClick={handleYesClick}
       >
         {CONFIG.questions.third.yesBtn}
       </button>
