@@ -38,7 +38,7 @@ export default function MusicPlayer({
     if (!audio) return;
 
     if (musicUrl !== currentUrl) {
-      const wasPlaying = isPlaying;
+      const wasPlaying = !audio.paused;
       
       // Update the URL
       setCurrentUrl(musicUrl);
@@ -53,7 +53,7 @@ export default function MusicPlayer({
           .catch(() => setIsPlaying(false));
       }
     }
-  }, [musicUrl, currentUrl, isPlaying]);
+  }, [musicUrl, currentUrl]);
 
   // Toggle music playback
   const toggleMusic = useCallback(() => {
