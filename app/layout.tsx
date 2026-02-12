@@ -34,7 +34,7 @@ export default function RootLayout({
       >
         <div className="fixed inset-0 w-full h-full -z-10 min-h-screen">
           <Image
-            src="/images/bg-image.jpg"
+            src={CONFIG.image.imageUrl}
             alt=""
             fill
             priority

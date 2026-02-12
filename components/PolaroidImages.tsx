@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { celebrationImages } from "@/lib/celebration-images";
 import Image from "next/image";
 
 // Polaroid card dimensions
@@ -27,23 +28,18 @@ export default function PolaroidImages({ show }: { show: boolean }) {
     if (!show) return;
 
     // Initialize polaroid images with random positions and velocities
-    const wifeyImages = [
-      "/images/wifey/wifey1.jpg",
-      "/images/wifey/wifey5.jpg",
-      "/images/wifey/wifey6.jpg",
-      "/images/wifey/wifey4.jpg",
-      "/images/wifey/wifey7.jpg",
-    ];
 
-    const initialImages: PolaroidImage[] = wifeyImages.map((src, index) => ({
-      id: index,
-      src,
-      x: Math.random() * (window.innerWidth - IMAGE_WIDTH),
-      y: Math.random() * (window.innerHeight - TOTAL_HEIGHT),
-      vx: (Math.random() - 0.5) * 3, // velocity x
-      vy: (Math.random() - 0.5) * 3, // velocity y
-      rotation: Math.random() * 20 - 10, // -10 to 10 degrees
-    }));
+    const initialImages: PolaroidImage[] = celebrationImages.map(
+      (src, index) => ({
+        id: index,
+        src,
+        x: Math.random() * (window.innerWidth - IMAGE_WIDTH),
+        y: Math.random() * (window.innerHeight - TOTAL_HEIGHT),
+        vx: (Math.random() - 0.5) * 3, // velocity x
+        vy: (Math.random() - 0.5) * 3, // velocity y
+        rotation: Math.random() * 20 - 10, // -10 to 10 degrees
+      })
+    );
 
     setImages(initialImages);
 
