@@ -9,8 +9,8 @@ An interactive, customizable Valentine's Day proposal web application built with
 ## 🌟 Features
 
 - **Interactive Multi-Step Experience**: Three engaging questions with unique interactions
-- **Fully Customizable**: Easy-to-edit configuration file for personalization
-- **Beautiful Animations**: Floating hearts, bears, and celebration effects
+- **Fully Customizable**: Easy-to-edit configuration files for personalization
+- **Beautiful Animations**: Floating hearts, bears, and bouncing polaroid celebration photos
 - **Background Music**: Optional music player with custom audio
 - **Responsive Design**: Works seamlessly on mobile, tablet, and desktop
 - **TypeScript Support**: Type-safe configuration and components
@@ -28,12 +28,14 @@ An interactive, customizable Valentine's Day proposal web application built with
 1. **Fork this repository** (click the Fork button at the top right)
 
 2. **Clone your forked repository**
+
    ```bash
    git clone https://github.com/YOUR-USERNAME/valentine-proposal-app.git
    cd valentine-proposal-app
    ```
 
 3. **Install dependencies**
+
    ```bash
    pnpm install
    # or
@@ -43,6 +45,7 @@ An interactive, customizable Valentine's Day proposal web application built with
    ```
 
 4. **Run the development server**
+
    ```bash
    pnpm dev
    # or
@@ -52,12 +55,17 @@ An interactive, customizable Valentine's Day proposal web application built with
    ```
 
 5. **Open your browser**
-   
+
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 🎨 Customization Guide
 
-All customization is done through the **`lib/config.ts`** file. Here's what you can customize:
+All customization is done through configuration files:
+
+- **`lib/config.ts`** - Main settings (questions, colors, music, background image)
+- **`lib/celebration-images.ts`** - Polaroid photos for celebration screen
+
+Here's what you can customize:
 
 ### 1. Basic Information
 
@@ -69,6 +77,7 @@ pageTitle: "Your Custom Title 💝",  // Browser tab title
 ### 2. Questions & Messages
 
 #### Question 1: "Do you love me?"
+
 ```typescript
 questions: {
   first: {
@@ -81,6 +90,7 @@ questions: {
 ```
 
 #### Question 2: Love Meter Slider
+
 ```typescript
 second: {
   text: "How much do you love me?",
@@ -91,6 +101,7 @@ second: {
 ```
 
 #### Question 3: Final Question
+
 ```typescript
 third: {
   text: "Will you be my Valentine? 🌹",
@@ -155,18 +166,36 @@ music: {
 
 **Tip**: Upload your music to [Cloudinary](https://cloudinary.com/), Google Drive, or any CDN and use the direct link.
 
-### 8. Celebration Image
+### 8. Background Image
 
 ```typescript
 image: {
-  imageUrl: "YOUR_IMAGE_URL",
+  imageUrl: "YOUR_IMAGE_URL",    // Main background image
   imageAltText: "Description of image"
 }
 ```
 
-### 9. Background Image
+Upload your background image to [Cloudinary](https://cloudinary.com/) or any image hosting service and use the direct link.
 
-Replace `/public/images/bg-image.jpg` with your own background image.
+### 9. Celebration Images (Polaroid Gallery)
+
+Edit **`lib/celebration-images.ts`** to customize the polaroid images that bounce around during the celebration screen:
+
+```typescript
+export const celebrationImages: CelebrationImages = [
+  "IMAGE_URL_1",
+  "IMAGE_URL_2",
+  "IMAGE_URL_3",
+  // Add as many images as you like!
+];
+```
+
+**Features:**
+
+- Images appear as polaroid-style photos
+- Automatically bounce around the screen with physics
+- Can add unlimited images
+- Recommended: 5-10 images for best effect
 
 ## 📁 Project Structure
 
@@ -180,17 +209,15 @@ valentine-proposal-app/
 │   ├── Celebration.tsx    # Success/celebration screen
 │   ├── FloatingElements.tsx # Animated hearts and bears
 │   ├── MusicPlayer.tsx    # Background music controller
-│   ├── PolaroidImages.tsx # Polaroid-style image display
+│   ├── PolaroidImages.tsx # Bouncing polaroid photo gallery
 │   ├── Question1.tsx      # "Do you love me?" component
 │   ├── Question2.tsx      # Love meter slider component
-│   ├── Question3.tsx      # Final proposal question
-│   └── ThemeProvider.tsx  # Theme wrapper component
+│   └── Question3.tsx      # Final proposal question
 ├── lib/
 │   ├── config.ts          # ⭐ Main configuration file
+│   ├── celebration-images.ts # 🖼️ Celebration polaroid images
 │   └── types.ts           # TypeScript type definitions
-├── public/
-│   └── images/
-│       └── bg-image.jpg   # Background image
+├── public/                # Public assets (optional)
 ├── tailwind.config.ts     # Tailwind CSS configuration
 └── package.json           # Dependencies and scripts
 ```
@@ -203,13 +230,13 @@ valentine-proposal-app/
 2. **Question 1** (`Question1.tsx`): Yes/No question with trick "No" button
 3. **Question 2** (`Question2.tsx`): Interactive love slider (0-10,000%)
 4. **Question 3** (`Question3.tsx`): Final proposal with growing "No" button
-5. **Celebration** (`Celebration.tsx`): Success screen with animations
+5. **Celebration** (`Celebration.tsx`): Success screen with animated polaroid photos
 
 ### Interactive Elements
 
 - **FloatingElements**: Animated emojis that float across the screen
 - **MusicPlayer**: Toggle background music on/off
-- **PolaroidImages**: Display images in polaroid-style frames
+- **PolaroidImages**: Animated bouncing polaroid photos during celebration
 
 ## 🛠️ Advanced Customization
 
@@ -284,11 +311,15 @@ Try reducing the number of floating elements or disabling some animations in the
 
 ## 💡 Tips for Best Experience
 
-- Use high-quality images (recommended: 1200x800px for background)
+- Use high-quality images for best visual appeal
+  - Background image: 1920x1080px or higher
+  - Polaroid images: 800x800px or higher
+- Host images on reliable CDN (Cloudinary, Imgur, etc.)
 - Keep music files under 5MB for faster loading
 - Test on mobile devices before sharing
 - Use romantic, soft colors for better visual appeal
 - Keep messages short and sweet
+- Add 5-10 polaroid images for optimal celebration effect
 
 ## 📄 License
 
@@ -297,6 +328,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 💖 Credits
 
 Created with love using:
+
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
