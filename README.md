@@ -1,30 +1,308 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💝 Valentine Proposal App
 
-## Getting Started
+An interactive, customizable Valentine's Day proposal web application built with Next.js 15. This app creates a fun, engaging experience with three questions, animated elements, and a celebration screen.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=flat-square&logo=tailwind-css)
 
-```bash
-pnpm dev
+## 🌟 Features
+
+- **Interactive Multi-Step Experience**: Three engaging questions with unique interactions
+- **Fully Customizable**: Easy-to-edit configuration file for personalization
+- **Beautiful Animations**: Floating hearts, bears, and celebration effects
+- **Background Music**: Optional music player with custom audio
+- **Responsive Design**: Works seamlessly on mobile, tablet, and desktop
+- **TypeScript Support**: Type-safe configuration and components
+- **Modern UI**: Styled with Tailwind CSS and custom animations
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+ installed
+- pnpm (recommended), npm, or yarn
+
+### Installation
+
+1. **Fork this repository** (click the Fork button at the top right)
+
+2. **Clone your forked repository**
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/valentine-proposal-app.git
+   cd valentine-proposal-app
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pnpm install
+   # or
+   npm install
+   # or
+   yarn install
+   ```
+
+4. **Run the development server**
+   ```bash
+   pnpm dev
+   # or
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open your browser**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🎨 Customization Guide
+
+All customization is done through the **`lib/config.ts`** file. Here's what you can customize:
+
+### 1. Basic Information
+
+```typescript
+valentineName: "Your Love's Name",  // Name of your valentine
+pageTitle: "Your Custom Title 💝",  // Browser tab title
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Questions & Messages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Question 1: "Do you love me?"
+```typescript
+questions: {
+  first: {
+    text: "Your question here",
+    yesBtn: "Button text",
+    noBtn: "Button text",
+    secretAnswer: "Hidden message when they click 'No'"
+  }
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### Question 2: Love Meter Slider
+```typescript
+second: {
+  text: "How much do you love me?",
+  subText: "Instruction text",
+  startText: "This much!",
+  nextBtn: "Next ❤️"
+}
+```
 
-## Learn More
+#### Question 3: Final Question
+```typescript
+third: {
+  text: "Will you be my Valentine? 🌹",
+  yesBtn: "Yes!",
+  noBtn: "No"
+}
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Love Messages (Based on Slider Value)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```typescript
+loveMessages: {
+  extreme: "Message when slider > 5000",
+  high: "Message when slider > 1000",
+  normal: "Message when slider > 100"
+}
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Celebration Screen
 
-## Deploy on Vercel
+```typescript
+celebration: {
+  title: "Success title",
+  message: "Success message",
+  emojis: "🎁💖🤗💝💋"
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 5. Colors & Theme
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```typescript
+colors: {
+  backgroundStart: "#7F55B1",    // Gradient start color
+  backgroundEnd: "#F49BAB",      // Gradient end color
+  buttonBackground: "#ff6b6b",   // Button color
+  buttonHover: "#ff8787",        // Button hover color
+  textColor: "#ff4757"           // Main text color
+}
+```
+
+### 6. Floating Emojis
+
+```typescript
+floatingEmojis: {
+  hearts: ["❤️", "💖", "💝", "💗", "💓"],
+  bears: ["🧸", "🐻"]
+}
+```
+
+### 7. Background Music
+
+```typescript
+music: {
+  enabled: true,                 // Enable/disable music
+  autoplay: true,                // Auto-start music
+  musicUrl: "YOUR_AUDIO_URL",    // Link to your music file
+  startText: "🎵 Play Music",
+  stopText: "🔇 Stop Music",
+  volume: 0.5                    // 0.0 to 1.0
+}
+```
+
+**Tip**: Upload your music to [Cloudinary](https://cloudinary.com/), Google Drive, or any CDN and use the direct link.
+
+### 8. Celebration Image
+
+```typescript
+image: {
+  imageUrl: "YOUR_IMAGE_URL",
+  imageAltText: "Description of image"
+}
+```
+
+### 9. Background Image
+
+Replace `/public/images/bg-image.jpg` with your own background image.
+
+## 📁 Project Structure
+
+```
+valentine-proposal-app/
+├── app/
+│   ├── layout.tsx         # Root layout with fonts and theme
+│   ├── page.tsx           # Main page with question flow
+│   └── globals.css        # Global styles and animations
+├── components/
+│   ├── Celebration.tsx    # Success/celebration screen
+│   ├── FloatingElements.tsx # Animated hearts and bears
+│   ├── MusicPlayer.tsx    # Background music controller
+│   ├── PolaroidImages.tsx # Polaroid-style image display
+│   ├── Question1.tsx      # "Do you love me?" component
+│   ├── Question2.tsx      # Love meter slider component
+│   ├── Question3.tsx      # Final proposal question
+│   └── ThemeProvider.tsx  # Theme wrapper component
+├── lib/
+│   ├── config.ts          # ⭐ Main configuration file
+│   └── types.ts           # TypeScript type definitions
+├── public/
+│   └── images/
+│       └── bg-image.jpg   # Background image
+├── tailwind.config.ts     # Tailwind CSS configuration
+└── package.json           # Dependencies and scripts
+```
+
+## 🎯 Component Overview
+
+### Question Flow
+
+1. **Welcome Screen**: Displays valentine's name with start button
+2. **Question 1** (`Question1.tsx`): Yes/No question with trick "No" button
+3. **Question 2** (`Question2.tsx`): Interactive love slider (0-10,000%)
+4. **Question 3** (`Question3.tsx`): Final proposal with growing "No" button
+5. **Celebration** (`Celebration.tsx`): Success screen with animations
+
+### Interactive Elements
+
+- **FloatingElements**: Animated emojis that float across the screen
+- **MusicPlayer**: Toggle background music on/off
+- **PolaroidImages**: Display images in polaroid-style frames
+
+## 🛠️ Advanced Customization
+
+### Adding More Questions
+
+1. Create a new component in `/components` (e.g., `Question4.tsx`)
+2. Import it in `app/page.tsx`
+3. Update the question flow state management
+4. Add configuration in `lib/config.ts` and update `lib/types.ts`
+
+### Changing Animations
+
+Edit animation settings in `lib/config.ts`:
+
+```typescript
+animations: {
+  floatDuration: "15s",        // How long emojis take to float
+  floatDistance: "50px",       // How far emojis move
+  bounceSpeed: "0.5s",         // Bounce animation speed
+  heartExplosionSize: 1.5      // Size multiplier for explosion
+}
+```
+
+### Custom Fonts
+
+The app uses Google Fonts (Dancing Script & Poppins). To change fonts:
+
+1. Edit `app/layout.tsx`
+2. Import new fonts from `next/font/google`
+3. Update the CSS variables in `tailwind.config.ts`
+
+## 📱 Deployment
+
+### Deploy on Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Go to [Vercel](https://vercel.com/new)
+3. Import your repository
+4. Deploy!
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Dayo-001/valentine-proposal-app)
+
+### Other Platforms
+
+- **Netlify**: Connect GitHub repo and deploy
+- **Railway**: Import project and deploy
+- **GitHub Pages**: Requires static export configuration
+
+## 🤝 Contributing
+
+Contributions are welcome! If you have ideas for improvements:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 Common Issues & Solutions
+
+### Music doesn't play automatically
+
+Some browsers block autoplay. Users need to click the music button manually due to browser autoplay policies.
+
+### Images not loading
+
+Make sure your image URLs are publicly accessible and use HTTPS links.
+
+### Animations are laggy
+
+Try reducing the number of floating elements or disabling some animations in the config file.
+
+## 💡 Tips for Best Experience
+
+- Use high-quality images (recommended: 1200x800px for background)
+- Keep music files under 5MB for faster loading
+- Test on mobile devices before sharing
+- Use romantic, soft colors for better visual appeal
+- Keep messages short and sweet
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 💖 Credits
+
+Created with love using:
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+
+---
+
+**Made with ❤️ for Valentine's Day**
+
+If you found this useful, please ⭐ star the repository and share it with others!
