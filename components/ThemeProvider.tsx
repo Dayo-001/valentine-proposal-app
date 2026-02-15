@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { CONFIG } from "@/lib/config";
+import { config } from "@/lib/config";
 
 export default function ThemeProvider({
   children,
@@ -11,9 +11,9 @@ export default function ThemeProvider({
   useEffect(() => {
     // Apply CSS variables for animations using React's effect hook
     const root = document.documentElement;
-    root.style.setProperty("--float-duration", CONFIG.animations.floatDuration);
-    root.style.setProperty("--float-distance", CONFIG.animations.floatDistance);
-    root.style.setProperty("--bounce-speed", CONFIG.animations.bounceSpeed);
+    root.style.setProperty("--float-duration", config.animations.floatDuration);
+    root.style.setProperty("--float-distance", config.animations.floatDistance);
+    root.style.setProperty("--bounce-speed", config.animations.bounceSpeed);
   }, []);
 
   return <>{children}</>;

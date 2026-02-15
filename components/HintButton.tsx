@@ -1,4 +1,4 @@
-import { CONFIG } from "@/lib/config";
+import { config } from "@/lib/config";
 import { Next } from "@/lib/types";
 
 const HintButton = ({ onNext }: Next) => {
@@ -12,7 +12,7 @@ const HintButton = ({ onNext }: Next) => {
         style={{ background: "linear-gradient(45deg, #ff6b6b, #feca57)" }}
         onClick={onNext}
       >
-        {CONFIG.questions.first.secretAnswer}
+        {config.questions.first.secretAnswer}
       </button>
     </div>
   );

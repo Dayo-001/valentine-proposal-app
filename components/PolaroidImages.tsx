@@ -3,23 +3,14 @@
 import { useState, useEffect } from "react";
 import { celebrationImages } from "@/lib/celebration-images";
 import Image from "next/image";
+import { PolaroidImage } from "@/lib/types";
 
 // Polaroid card dimensions
-const IMAGE_WIDTH = 120;
-const IMAGE_HEIGHT = 120;
-const POLAROID_PADDING = 8; // 2 * 4px (p-2)
-const CAPTION_HEIGHT = 24; // h-6
-const TOTAL_HEIGHT = IMAGE_HEIGHT + POLAROID_PADDING + CAPTION_HEIGHT;
-
-interface PolaroidImage {
-  id: number;
-  src: string;
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  rotation: number;
-}
+const imageWidth = 120;
+const imageHeight = 120;
+const polaroidPadding = 8; // 2 * 4px (p-2)
+const captionHeight = 24; // h-6
+const totalHeight = imageHeight + polaroidPadding + captionHeight;
 
 export default function PolaroidImages({ show }: { show: boolean }) {
   const [images, setImages] = useState<PolaroidImage[]>([]);
@@ -33,8 +24,8 @@ export default function PolaroidImages({ show }: { show: boolean }) {
       (src, index) => ({
         id: index,
         src,
-        x: Math.random() * (window.innerWidth - IMAGE_WIDTH),
-        y: Math.random() * (window.innerHeight - TOTAL_HEIGHT),
+        x: Math.random() * (window.innerWidth - imageWidth),
+        y: Math.random() * (window.innerHeight - totalHeight),
         vx: (Math.random() - 0.5) * 3, // velocity x
         vy: (Math.random() - 0.5) * 3, // velocity y
         rotation: Math.random() * 20 - 10, // -10 to 10 degrees
@@ -53,16 +44,16 @@ export default function PolaroidImages({ show }: { show: boolean }) {
           let newVy = img.vy;
 
           // Bounce off edges
-          if (newX <= 0 || newX >= window.innerWidth - IMAGE_WIDTH) {
+          if (newX <= 0 || newX >= window.innerWidth - imageWidth) {
             newVx = -newVx;
-            newX = Math.max(0, Math.min(newX, window.innerWidth - IMAGE_WIDTH));
+            newX = Math.max(0, Math.min(newX, window.innerWidth - imageWidth));
           }
 
-          if (newY <= 0 || newY >= window.innerHeight - TOTAL_HEIGHT) {
+          if (newY <= 0 || newY >= window.innerHeight - totalHeight) {
             newVy = -newVy;
             newY = Math.max(
               0,
-              Math.min(newY, window.innerHeight - TOTAL_HEIGHT)
+              Math.min(newY, window.innerHeight - totalHeight)
             );
           }
 
@@ -100,8 +91,8 @@ export default function PolaroidImages({ show }: { show: boolean }) {
             <Image
               src={img.src}
               alt={`Wifey ${img.id + 1}`}
-              width={IMAGE_WIDTH}
-              height={IMAGE_HEIGHT}
+              width={imageWidth}
+              height={imageHeight}
               className="object-cover"
             />
             <div className="h-6 bg-white"></div>

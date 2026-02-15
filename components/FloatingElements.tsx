@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { CONFIG } from "@/lib/config";
+import { config } from "@/lib/config";
 import { FloatingElement } from "@/lib/types";
 
 const generateRandomElement = (id: string, emoji: string): FloatingElement => {
@@ -26,12 +26,12 @@ export default function FloatingElements({
     const elements: FloatingElement[] = [];
 
     // Create hearts
-    CONFIG.floatingEmojis.hearts.forEach((heart, index) => {
+    config.floatingEmojis.hearts.forEach((heart, index) => {
       elements.push(generateRandomElement(`heart-${index}`, heart));
     });
 
     // Create bears
-    CONFIG.floatingEmojis.bears.forEach((bear, index) => {
+    config.floatingEmojis.bears.forEach((bear, index) => {
       elements.push(generateRandomElement(`bear-${index}`, bear));
     });
 
@@ -47,8 +47,8 @@ export default function FloatingElements({
 
       for (let i = 0; i < 20; i++) {
         const randomHeart =
-          CONFIG.floatingEmojis.hearts[
-            Math.floor(Math.random() * CONFIG.floatingEmojis.hearts.length)
+          config.floatingEmojis.hearts[
+            Math.floor(Math.random() * config.floatingEmojis.hearts.length)
           ];
 
         explosionElements.push({

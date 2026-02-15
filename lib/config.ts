@@ -1,6 +1,6 @@
 import { ValentineConfig } from "./types";
 
-export const CONFIG: ValentineConfig = {
+export const config: ValentineConfig = {
   valentineName: "Brownie",
   pageTitle: "The Ulitamte Love Test 💝",
   floatingEmojis: {
@@ -65,4 +65,5 @@ export const CONFIG: ValentineConfig = {
   },
 };
 
+// additional example cloudinary music url:
 // https://res.cloudinary.com/dwbgocfhp/video/upload/v1770217090/5c98-5ef8-4716-8677-584afae1e617_mpatvq.mp3

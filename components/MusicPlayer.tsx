@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
-import { CONFIG } from "@/lib/config";
+import { config } from "@/lib/config";
 import { MusicPlayerProps } from "@/lib/types";
 const initialCondition = {
   autoStart: false,
@@ -19,10 +19,10 @@ export default function MusicPlayer({
     if (!audio) return;
 
     // Set volume
-    audio.volume = CONFIG.music.volume;
+    audio.volume = config.music.volume;
 
     // Attempt autoplay if enabled
-    if (CONFIG.music.autoplay && autoStart) {
+    if (config.music.autoplay && autoStart) {
       audio
         .play()
         .then(() => setIsPlaying(true))
@@ -53,10 +53,10 @@ export default function MusicPlayer({
         className="bg-gradient-to-r from-[#667eea] to-[#764ba2] border-none px-3 py-1.5 sm:px-4 sm:py-2 rounded-[20px] text-white text-xs sm:text-sm cursor-pointer transition-transform duration-300 hover:scale-105 active:scale-95"
         aria-label={isPlaying ? "Stop music" : "Play music"}
       >
-        {isPlaying ? CONFIG.music.stopText : CONFIG.music.startText}
+        {isPlaying ? config.music.stopText : config.music.startText}
       </button>
       <audio ref={audioRef} loop>
-        <source src={CONFIG.music.musicUrl} type="audio/mpeg" />
+        <source src={config.music.musicUrl} type="audio/mpeg" />
       </audio>
     </div>
   );

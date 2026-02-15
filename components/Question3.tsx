@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useMemo } from "react";
 import confetti from "canvas-confetti";
-import { CONFIG } from "@/lib/config";
+import { config } from "@/lib/config";
 import { Position } from "@/lib/types";
 import { Yes } from "@/lib/types";
 import HintButton from "./HintButton";
@@ -15,7 +15,7 @@ export default function Question3({ onYes, onNext }: Yes & Next) {
 
   const baseButtonStyle = useMemo(
     () => ({
-      backgroundColor: CONFIG.colors.buttonBackground,
+      backgroundColor: config.colors.buttonBackground,
     }),
     []
   );
@@ -91,24 +91,24 @@ export default function Question3({ onYes, onNext }: Yes & Next) {
     <div className="min-h-[200px] mt-14">
       <h2
         className="font-poppins text-lg sm:text-xl lg:text-2xl xl:text-3xl mb-4 sm:mb-6 px-2"
-        style={{ color: CONFIG.colors.textColor }}
+        style={{ color: config.colors.textColor }}
       >
-        {CONFIG.questions.third.text}
+        {config.questions.third.text}
       </h2>
 
       <button
         className="border-none px-4 py-2 sm:px-5 sm:py-2.5 mx-1 sm:mx-2.5 rounded-[20px] text-white text-base sm:text-lg cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95"
         style={baseButtonStyle}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = CONFIG.colors.buttonHover;
+          e.currentTarget.style.backgroundColor = config.colors.buttonHover;
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.backgroundColor =
-            CONFIG.colors.buttonBackground;
+            config.colors.buttonBackground;
         }}
         onClick={handleYesClick}
       >
-        {CONFIG.questions.third.yesBtn}
+        {config.questions.third.yesBtn}
       </button>
 
       <button
@@ -120,15 +120,15 @@ export default function Question3({ onYes, onNext }: Yes & Next) {
             : {}),
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = CONFIG.colors.buttonHover;
+          e.currentTarget.style.backgroundColor = config.colors.buttonHover;
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.backgroundColor =
-            CONFIG.colors.buttonBackground;
+            config.colors.buttonBackground;
         }}
         onClick={moveNoButton}
       >
-        {CONFIG.questions.third.noBtn}
+        {config.questions.third.noBtn}
       </button>
       <HintButton onNext={onNext} />
     </div>

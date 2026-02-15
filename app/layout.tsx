@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Dancing_Script, Poppins } from "next/font/google";
 import "./globals.css";
-import { CONFIG } from "@/lib/config";
+import { config } from "@/lib/config";
 import ThemeProvider from "@/components/ThemeProvider";
 import Image from "next/image";
 
@@ -18,7 +18,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: CONFIG.pageTitle,
+  title: config.pageTitle,
   description: "A special Valentine's Day proposal",
 };
 
@@ -34,7 +34,7 @@ export default function RootLayout({
       >
         <div className="fixed inset-0 w-full h-full -z-10 min-h-screen">
           <Image
-            src={CONFIG.image.imageUrl}
+            src={config.image.imageUrl}
             alt=""
             fill
             priority

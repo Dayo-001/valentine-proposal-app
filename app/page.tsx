@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CONFIG } from "@/lib/config";
+import { config } from "@/lib/config";
 import FloatingElements from "@/components/FloatingElements";
 import MusicPlayer from "@/components/MusicPlayer";
 import Question1 from "@/components/Question1";
@@ -39,9 +39,9 @@ const HomePage = () => {
             <div className="flex flex-col items-center gap-4">
               <h1
                 className="font-dancing text-3xl sm:text-4xl lg:text-5xl mb-4"
-                style={{ color: CONFIG.colors.textColor }}
+                style={{ color: config.colors.textColor }}
               >
-                Welcome, {CONFIG.valentineName}! 💝
+                Welcome, {config.valentineName}! 💝
               </h1>
               <button
                 onClick={handleStart}
@@ -52,13 +52,13 @@ const HomePage = () => {
             </div>
           ) : (
             <>
-              {CONFIG.music.enabled && <MusicPlayer autoStart={true} />}
+              {config.music.enabled && <MusicPlayer autoStart={true} />}
               {currentQuestion === 1 && (
                 <h1
                   className="font-dancing text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-6 lg:mb-8"
-                  style={{ color: CONFIG.colors.textColor }}
+                  style={{ color: config.colors.textColor }}
                 >
-                  My {CONFIG.valentineName},
+                  My {config.valentineName},
                 </h1>
               )}
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
-import { CONFIG } from "@/lib/config";
+import { config } from "@/lib/config";
 import { Next } from "@/lib/types";
 import { Position } from "@/lib/types";
 import HintButton from "./HintButton";
@@ -13,14 +13,14 @@ export default function Question1({ onNext }: Next) {
 
   const baseButtonStyle = useMemo(
     () => ({
-      backgroundColor: CONFIG.colors.buttonBackground,
+      backgroundColor: config.colors.buttonBackground,
     }),
     []
   );
 
   const hoverButtonStyle = useMemo(
     () => ({
-      backgroundColor: CONFIG.colors.buttonHover,
+      backgroundColor: config.colors.buttonHover,
     }),
     []
   );
@@ -36,8 +36,14 @@ export default function Question1({ onNext }: Next) {
     const minTop = 10;
 
     return {
-      left: `${Math.max(minLeft, Math.min(maxWidth - minLeft, Math.random() * maxWidth))}px`,
-      top: `${Math.max(minTop, Math.min(maxHeight - minTop, Math.random() * maxHeight))}px`,
+      left: `${Math.max(
+        minLeft,
+        Math.min(maxWidth - minLeft, Math.random() * maxWidth)
+      )}px`,
+      top: `${Math.max(
+        minTop,
+        Math.min(maxHeight - minTop, Math.random() * maxHeight)
+      )}px`,
     };
   }, []);
 
@@ -49,9 +55,9 @@ export default function Question1({ onNext }: Next) {
     <div className="min-h-[200px] flex flex-col items-center gap-4 sm:gap-6">
       <h2
         className="font-poppins text-lg sm:text-xl lg:text-2xl px-2"
-        style={{ color: CONFIG.colors.textColor }}
+        style={{ color: config.colors.textColor }}
       >
-        {CONFIG.questions.first.text}
+        {config.questions.first.text}
       </h2>
       <div className="flex gap-2 sm:gap-3 items-center flex-wrap justify-center">
         <button
@@ -61,15 +67,15 @@ export default function Question1({ onNext }: Next) {
             ...hoverButtonStyle,
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = CONFIG.colors.buttonHover;
+            e.currentTarget.style.backgroundColor = config.colors.buttonHover;
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor =
-              CONFIG.colors.buttonBackground;
+              config.colors.buttonBackground;
           }}
           onClick={onNext}
         >
-          {CONFIG.questions.first.yesBtn}
+          {config.questions.first.yesBtn}
         </button>
 
         <button
@@ -81,15 +87,15 @@ export default function Question1({ onNext }: Next) {
               : {}),
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = CONFIG.colors.buttonHover;
+            e.currentTarget.style.backgroundColor = config.colors.buttonHover;
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor =
-              CONFIG.colors.buttonBackground;
+              config.colors.buttonBackground;
           }}
           onClick={moveNoButton}
         >
-          {CONFIG.questions.first.noBtn}
+          {config.questions.first.noBtn}
         </button>
       </div>
 

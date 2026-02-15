@@ -86,3 +86,13 @@ export interface MusicPlayerProps {
 }
 
 export type CelebrationImages = string[];
+
+export type PolaroidImage = {
+  id: number;
+  src: string;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  rotation: number;
+};
